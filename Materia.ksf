@@ -1,434 +1,211 @@
-COLORS = {
-    "B00": "#263238",
-    "B01": "#2C393F",
-    "B02": "#37474F",
-    "B03": "#707880",
-    "B04": "#8BD649",
-    "B05": "#CDD3DE",
-    "B06": "#D5DBE5",
-    "B07": "#FFFFFF",
-    "B08": "#EC5F67",
-    "B09": "#EA9560",
-    "B0A": "#FFCC00",
-    "B0B": "#8BD649",
-    "B0C": "#80CBC4",
-    "B0D": "#89DDFF",
-    "B0E": "#82AAFF",
-    "B0F": "#EC5F67"
-}
+Version = 15
 
-def hexToBGR(val):
-    if type(val) == int:
-        return val
+Booleans = {'caretLineVisible': True, 'preferFixed': True, 'useSelFore': False}
 
-    val = val.lstrip('#')
-    if len(val) == 3:
-        val += val
+InterfaceStyles = {'border': {'back': 8419440},
+ 'button': {'back': 5195575},
+ 'caption': {'fore': 16777215},
+ 'contrast': {'back': 4143404},
+ 'contrast widget': {'back': 5195575},
+ 'css': {'code': '@import url("chrome://komodo/skin/global/colors.less");\n@import url("resource://profile/colors.less");\n'},
+ 'icons': {'fore': 15064021},
+ 'icons special': {'fore': 15064021},
+ 'icons widget': {'fore': 15064021},
+ 'scc conflict': {'fore': 16755330},
+ 'scc deleted': {'fore': 6774764},
+ 'scc modified': {'fore': 52479},
+ 'scc new': {'fore': 4839051},
+ 'scc ok': {'fore': 16777215},
+ 'scc sync': {'fore': 12897152},
+ 'secondary special': {'fore': 8419440},
+ 'selected': {'back': 5195575, 'fore': 16777215},
+ 'special': {'back': 3682854, 'fore': 16777215},
+ 'special contrast': {'back': 4143404},
+ 'special widget': {'back': 5195575, 'fore': 16777215},
+ 'state error': {'back': 6774764},
+ 'state foreground': {'fore': 16777215},
+ 'state info': {'back': 52479},
+ 'state ok': {'back': 4839051},
+ 'state warning': {'back': 52479},
+ 'textbox': {'back': 4143404, 'fore': 16777215},
+ 'textbox special': {'back': 5195575, 'fore': 16777215},
+ 'textbox widget': {'back': 4143404, 'fore': 16777215},
+ 'widget': {'back': 4143404, 'fore': 15064021},
+ 'window': {'back': 3682854,
+            'face': 'Noto Sans',
+            'fore': 16777215,
+            'size': '0.9rem'},
+ 'window button close': {'back': 6774764},
+ 'window button maximize': {'back': 4839051},
+ 'window button minimize': {'back': 52479}}
 
-    r,g,b = int(val[:2], 16), int(val[2:4], 16), int(val[4:], 16)
-    color = r+g*256+b*256*256
-    return color
+CommonStyles = {'attribute name': {'fore': 6329834},
+ 'attribute value': {'fore': 4839051},
+ 'bracebad': {'fore': 15064021},
+ 'bracehighlight': {'back': 5195575, 'fore': 15064021},
+ 'classes': {'fore': 52479},
+ 'comments': {'fore': 8419440, 'italic': True},
+ 'control characters': {'fore': 6329834},
+ 'default_fixed': {'back': 3682854,
+                   'bold': 0,
+                   'eolfilled': 0,
+                   'face': 'Hack',
+                   'fore': 14603213,
+                   'hotspot': 0,
+                   'italic': 0,
+                   'lineSpacing': 2,
+                   'size': 11,
+                   'useFixed': 1},
+ 'default_proportional': {'back': 3682854,
+                          'bold': 0,
+                          'eolfilled': 0,
+                          'face': '"DejaVu Sans", "Bitstream Vera Sans", Helvetica, Tahoma, Verdana, sans-serif',
+                          'fore': 14603213,
+                          'hotspot': 0,
+                          'italic': 0,
+                          'lineSpacing': 2,
+                          'size': 11,
+                          'useFixed': 0},
+ 'fold markers': {'back': 3682854, 'fore': 8419440},
+ 'functions': {'fore': 16768393},
+ 'identifiers': {'fore': 15064021},
+ 'indent guides': {'fore': 4143404},
+ 'keywords': {'fore': 16755330},
+ 'keywords2': {'fore': 6774764},
+ 'linenumbers': {'back': 4143404,
+                 'bold': False,
+                 'fore': 8419440,
+                 'size': 10,
+                 'useFixed': True},
+ 'match_highlight': {'back': 5195575, 'fore': 15064021},
+ 'numbers': {'fore': 6329834},
+ 'operators': {'fore': 16768393},
+ 'preprocessor': {'fore': 15064021},
+ 'regex': {'fore': 12897152},
+ 'stderr': {'fore': 6774764},
+ 'stdin': {'fore': 6329834},
+ 'stdout': {'fore': 12897152},
+ 'stringeol': {'back': 4839051, 'eolfilled': True},
+ 'strings': {'fore': 4839051},
+ 'tags': {'fore': 6774764},
+ 'variables': {'fore': 6774764}}
 
-def parseColors(colors):
+LanguageStyles = {'CSS': {'ids': {'fore': 16755330}, 'values': {'fore': 4839051}},
+ 'Diff': {'additionline': {'fore': 4839051},
+          'chunkheader': {'fore': 4839051},
+          'deletionline': {'fore': 6774764},
+          'diffline': {'fore': 52479},
+          'fileline': {'fore': 14603213}},
+ 'Errors': {'Error lines': {'fore': 6774764, 'hotspot': 1, 'italic': 1}},
+ 'HTML': {'attributes': {'fore': 4839051},
+          'cdata': {'fore': 6329834},
+          'cdata content': {'fore': 14603213},
+          'cdata tags': {'fore': 15064021},
+          'xpath attributes': {'fore': 12897152}},
+ 'HTML5': {'attributes': {'fore': 4839051},
+           'cdata': {'fore': 6329834},
+           'cdata content': {'fore': 14603213},
+           'cdata tags': {'fore': 15064021},
+           'xpath attributes': {'fore': 12897152}},
+ 'JavaScript': {'commentdockeyword': {'fore': 4839051},
+                'commentdockeyworderror': {'fore': 6774764},
+                'globalclass': {'fore': 52479}},
+ 'PHP': {'commentdockeyword': {'fore': 4839051},
+         'commentdockeyworderror': {'fore': 6774764}},
+ 'XML': {'attributes': {'fore': 4839051},
+         'cdata': {'fore': 6329834},
+         'cdata content': {'fore': 14603213},
+         'cdata tags': {'fore': 15064021},
+         'xpath attributes': {'fore': 12897152}}}
 
-    colors = colors.copy()
+MiscLanguageSettings = {}
 
-    colors["B00"] = hexToBGR(colors["B00"])
-    colors["B01"] = hexToBGR(colors["B01"])
-    colors["B02"] = hexToBGR(colors["B02"])
-    colors["B03"] = hexToBGR(colors["B03"])
-    colors["B04"] = hexToBGR(colors["B04"])
-    colors["B05"] = hexToBGR(colors["B05"])
-    colors["B06"] = hexToBGR(colors["B06"])
-    colors["B07"] = hexToBGR(colors["B07"])
-    colors["B08"] = hexToBGR(colors["B08"])
-    colors["B09"] = hexToBGR(colors["B09"])
-    colors["B0A"] = hexToBGR(colors["B0A"])
-    colors["B0B"] = hexToBGR(colors["B0B"])
-    colors["B0C"] = hexToBGR(colors["B0C"])
-    colors["B0D"] = hexToBGR(colors["B0D"])
-    colors["B0E"] = hexToBGR(colors["B0E"])
-    colors["B0F"] = hexToBGR(colors["B0F"])
+Colors = {'bookmarkColor': 5195575,
+ 'callingLineColor': 4143404,
+ 'caretFore': 14603213,
+ 'caretLineBack': 4143404,
+ 'changeMarginDeleted': 6774764,
+ 'changeMarginInserted': 4839051,
+ 'changeMarginReplaced': 16768393,
+ 'currentLineColor': 4143404,
+ 'edgeColor': 4143404,
+ 'foldMarginColor': 4143404,
+ 'selBack': 5195575,
+ 'selFore': 14603213,
+ 'whitespaceColor': 5195575}
 
-    colors["red"]       = colors["B08"]
-    colors["orange"]    = colors["B09"]
-    colors["yellow"]    = colors["B0A"]
-    colors["green"]     = colors["B0B"]
-    colors["teal"]      = colors["B0C"]
-    colors["blue"]      = colors["B0D"]
-    colors["purple"]    = colors["B0E"]
-    colors["themed"]    = colors["B0F"]
-
-    return colors
-
-def parseScheme(colors):
-    return {
-
-        'Version': 15,
-
-        'Booleans': {
-            'caretLineVisible': True,
-            'preferFixed': True,
-            'useSelFore': False
-        },
-
-        'CommonStyles': {
-            'attribute name': {
-                'fore': colors["orange"]
-            },
-            'attribute value': {
-                'fore': colors["green"]
-            },
-            'bracebad': {
-                'fore': colors["baseForeBlend1"]
-            },
-            'bracehighlight': {
-                'fore': colors["baseForeBlend1"],
-                'back': colors["baseBackBlend2"]
-            },
-            'classes': {
-                'fore': colors["yellow"]
-            },
-            'comments': {
-                'fore': colors["comment"],
-                'italic': True
-            },
-            'control characters': {
-                'fore': colors["orange"]
-            },
-            'default_fixed': {
-                'back': colors["baseBack"],
-                'eolfilled': 0,
-                'face': 'Monaco, "Source Code Pro", Consolas, Inconsolata, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", Menlo, Monaco, "Courier New", Courier, Monospace',
-                'fore': colors["baseFore"],
-                'hotspot': 0,
-                'italic': 0,
-# #if PLATFORM == "darwin"
-                'size': 13,
-# #else
-                'size': 11,
-# #endif
-
-                'useFixed': 1,
-                'bold': 0,
-                'lineSpacing': 2
-            },
-            'default_proportional': {
-                'back': colors["baseBack"],
-                'eolfilled': 0,
-                'face': '"DejaVu Sans", "Bitstream Vera Sans", Helvetica, Tahoma, Verdana, sans-serif',
-                'fore': colors["baseFore"],
-                'hotspot': 0,
-                'italic': 0,
-# #if PLATFORM == "darwin"
-                'size': 13,
-# #else
-                'size': 11,
-# #endif
-                'useFixed': 0,
-                'bold': 0,
-                'lineSpacing': 2
-            },
-            'fold markers': {
-                'fore': colors["comment"],
-                'back': colors["baseBack"]
-            },
-            'functions': {
-                'fore': colors["blue"]
-            },
-            'identifiers': {
-                'fore': colors["baseForeBlend1"]
-            },
-            'indent guides': {
-                'fore': colors["baseBackBlend1"]
-            },
-            'keywords': {
-                'fore': colors["purple"]
-            },
-            'keywords2': {
-                'fore': colors["red"]
-            },
-            'linenumbers': {
-                'back': colors["baseBackBlend1"],
-                'fore': colors["baseBackBlend3"],
-                'size': 10,
-                'useFixed': True,
-                'bold': False
-            },
-            'numbers': {
-                'fore': colors["orange"]
-            },
-            'operators': {
-                'fore': colors["blue"]
-            },
-            'preprocessor': {
-                'fore': colors["baseForeBlend1"]
-            },
-            'regex': {
-                'fore': colors["teal"]
-            },
-            'match_highlight': {
-                'fore': colors["baseForeBlend1"],
-                'back': colors["baseBackBlend2"]
-            },
-            'stderr': {
-                'fore': colors["red"]
-            },
-            'stdin': {
-                'fore': colors["orange"]
-            },
-            'stdout': {
-                'fore': colors["teal"]
-            },
-            'stringeol': {
-                'back': colors["baseForeBlend2"],
-                'eolfilled': True
-            },
-            'strings': {
-                'fore': colors["green"]
-            },
-            'tags': {
-                'fore': colors["red"]
-            },
-            'variables': {
-                'fore': colors["red"]
-            }
-        },
-
-        'LanguageStyles': {
-            'CSS': {
-                'ids': {
-                    'fore': colors["purple"]
-                },
-                'values': {
-                    'fore': colors["green"]
-                }
-            },
-            'Diff': {
-                'additionline': {
-                    'fore': colors["green"]
-                },
-                'chunkheader': {
-                    'fore': colors["baseForeBlend2"]
-                },
-                'deletionline': {
-                    'fore': colors["red"]
-                },
-                'diffline': {
-                    'fore': colors["yellow"]
-                },
-                'fileline': {
-                    'fore': colors["baseFore"]
-                }
-            },
-            'Errors': {
-                'Error lines': {
-                    'fore': colors["red"],
-                    'hotspot': 1,
-                    'italic': 1
-                }
-            },
-            'HTML': {
-                'attributes': {
-                    'fore': colors["green"]
-                },
-                'cdata': {
-                    'fore': colors["orange"]
-                },
-                'cdata content': {
-                    'fore': colors["baseFore"]
-                },
-                'cdata tags': {
-                    'fore': colors["baseForeBlend1"]
-                },
-                'xpath attributes': {
-                    'fore': colors["teal"]
-                }
-            },
-            'HTML5': {
-                'attributes': {
-                    'fore': colors["green"]
-                },
-                'cdata': {
-                    'fore': colors["orange"]
-                },
-                'cdata content': {
-                    'fore': colors["baseFore"]
-                },
-                'cdata tags': {
-                    'fore': colors["baseForeBlend1"]
-                },
-                'xpath attributes': {
-                    'fore': colors["teal"]
-                }
-            },
-            'XML': {
-                'attributes': {
-                    'fore': colors["green"]
-                },
-                'cdata': {
-                    'fore': colors["orange"]
-                },
-                'cdata content': {
-                    'fore': colors["baseFore"]
-                },
-                'cdata tags': {
-                    'fore': colors["baseForeBlend1"]
-                },
-                'xpath attributes': {
-                    'fore': colors["teal"]
-                }
-            },
-            'JavaScript': {
-                'commentdockeyword': {
-                    'fore': colors["commentBlend"]
-                },
-                'commentdockeyworderror': {
-                    'fore': colors["red"]
-                },
-                'globalclass': {
-                    'fore': colors["yellow"]
-                }
-            },
-            'PHP': {
-                'commentdockeyword': {
-                    'fore': colors["commentBlend"]
-                },
-                'commentdockeyworderror': {
-                    'fore': colors["red"]
-                }
-            }
-        },
-
-        'MiscLanguageSettings': {},
-
-        'Colors': {
-            'bookmarkColor': colors["baseBackBlend2"],
-            'callingLineColor': colors["baseBackBlend1"],
-            'caretFore': colors["baseFore"],
-            'caretLineBack': colors["baseBackBlend1"],
-            'changeMarginDeleted': colors["red"],
-            'changeMarginInserted': colors["green"],
-            'changeMarginReplaced': colors["blue"],
-            'currentLineColor': colors["baseBackBlend1"],
-            'edgeColor': colors["baseBackBlend1"],
-            'foldMarginColor': colors["baseBackBlend1"],
-            'selBack': colors["baseBackBlend2"],
-            'selFore': colors["baseFore"],
-            'whitespaceColor': colors["baseBackBlend2"]
-        },
-
-        'Indicators': {
-            'collab_local_change': {
-                'alpha': 0,
-                'color': colors["green"],
-                'draw_underneath': False,
-                'style': 5
-            },
-            'collab_remote_change': {
-                'alpha': 255,
-                'color': colors["blue"],
-                'draw_underneath': True,
-                'style': 0
-            },
-            'collab_remote_cursor_1': {
-                'alpha': 100,
-                'color': colors["blue"],
-                'draw_underneath': True,
-                'style': 8
-            },
-            'collab_remote_cursor_2': {
-                'alpha': 100,
-                'color': colors["orange"],
-                'draw_underneath': True,
-                'style': 8
-            },
-            'collab_remote_cursor_3': {
-                'alpha': 100,
-                'color': colors["red"],
-                'draw_underneath': True,
-                'style': 8
-            },
-            'collab_remote_cursor_4': {
-                'alpha': 100,
-                'color': colors["yellow"],
-                'draw_underneath': True,
-                'style': 8
-            },
-            'collab_remote_cursor_5': {
-                'alpha': 100,
-                'color': colors["teal"],
-                'draw_underneath': True,
-                'style': 8
-            },
-            'find_highlighting': {
-                'alpha': 100,
-                'color': colors["baseBackBlend2"],
-                'draw_underneath': True,
-                'style': 8
-            },
-            'linter_error': {
-                'alpha': 255,
-                'color': colors["red"],
-                'draw_underneath': True,
-                'style': 13
-            },
-            'linter_warning': {
-                'alpha': 255,
-                'color': colors["yellow"],
-                'draw_underneath': True,
-                'style': 13
-            },
-            'soft_characters': {
-                'alpha': 255,
-                'color': colors["baseForeBlend2"],
-                'draw_underneath': False,
-                'style': 0
-            },
-            'tabstop_current': {
-                'alpha': 255,
-                'color': colors["baseBackBlend1"],
-                'draw_underneath': True,
-                'style': 8
-            },
-            'tabstop_pending': {
-                'alpha': 255,
-                'color': colors["baseBackBlend2"],
-                'draw_underneath': True,
-                'style': 6
-            },
-            'tag_matching': {
-                'alpha': 255,
-                'color': colors["blue"],
-                'draw_underneath': False,
-                'style': 0
-            },
-            'spelling_error': {
-                'alpha': 255,
-                'color': colors["yellow"],
-                'draw_underneath': True,
-                'style': 3
-            }
-        }
-
-    }
-
-def parse(colors):
-
-    colors = parseColors(colors)
-
-    colors["baseFore"]          = colors["B05"]
-    colors["baseForeBlend1"]    = colors["B06"]
-    colors["baseForeBlend2"]    = colors["B04"]
-
-    colors["baseBack"]          = colors["B00"]
-    colors["baseBackBlend1"]    = colors["B01"]
-    colors["baseBackBlend2"]    = colors["B02"]
-    colors["baseBackBlend3"]    = colors["B03"]
-
-    colors["comment"]           = colors["B03"]
-    colors["commentBlend"]      = colors["B04"]
-
-    return parseScheme(colors)
-
-exports = parse(COLORS)
+Indicators = {'collab_local_change': {'alpha': 0,
+                         'color': 4839051,
+                         'draw_underneath': False,
+                         'outline_alpha': 0,
+                         'style': 5},
+ 'collab_remote_change': {'alpha': 255,
+                          'color': 16768393,
+                          'draw_underneath': True,
+                          'outline_alpha': 255,
+                          'style': 0},
+ 'collab_remote_cursor_1': {'alpha': 100,
+                            'color': 16768393,
+                            'draw_underneath': True,
+                            'outline_alpha': 100,
+                            'style': 8},
+ 'collab_remote_cursor_2': {'alpha': 100,
+                            'color': 6329834,
+                            'draw_underneath': True,
+                            'outline_alpha': 100,
+                            'style': 8},
+ 'collab_remote_cursor_3': {'alpha': 100,
+                            'color': 6774764,
+                            'draw_underneath': True,
+                            'outline_alpha': 100,
+                            'style': 8},
+ 'collab_remote_cursor_4': {'alpha': 100,
+                            'color': 52479,
+                            'draw_underneath': True,
+                            'outline_alpha': 100,
+                            'style': 8},
+ 'collab_remote_cursor_5': {'alpha': 100,
+                            'color': 12897152,
+                            'draw_underneath': True,
+                            'outline_alpha': 100,
+                            'style': 8},
+ 'find_highlighting': {'alpha': 100,
+                       'color': 5195575,
+                       'draw_underneath': True,
+                       'outline_alpha': 100,
+                       'style': 8},
+ 'linter_error': {'alpha': 255,
+                  'color': 6774764,
+                  'draw_underneath': True,
+                  'outline_alpha': 255,
+                  'style': 13},
+ 'linter_warning': {'alpha': 255,
+                    'color': 52479,
+                    'draw_underneath': True,
+                    'outline_alpha': 255,
+                    'style': 13},
+ 'soft_characters': {'alpha': 255,
+                     'color': 4839051,
+                     'draw_underneath': False,
+                     'outline_alpha': 255,
+                     'style': 0},
+ 'spelling_error': {'alpha': 255,
+                    'color': 52479,
+                    'draw_underneath': True,
+                    'outline_alpha': 255,
+                    'style': 3},
+ 'tabstop_current': {'alpha': 255,
+                     'color': 4143404,
+                     'draw_underneath': True,
+                     'outline_alpha': 255,
+                     'style': 8},
+ 'tabstop_pending': {'alpha': 255,
+                     'color': 5195575,
+                     'draw_underneath': True,
+                     'outline_alpha': 255,
+                     'style': 6},
+ 'tag_matching': {'alpha': 255,
+                  'color': 16768393,
+                  'draw_underneath': False,
+                  'outline_alpha': 255,
+                  'style': 0}}
